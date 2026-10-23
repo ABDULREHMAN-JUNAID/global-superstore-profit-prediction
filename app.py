@@ -280,7 +280,22 @@ st.markdown("""
     background-color: #b7d7ff !important;
     color: #172033 !important;
 }
+/* Make sidebar collapse/expand arrow visible */
+[data-testid="stSidebarCollapseButton"] button,
+[data-testid="stSidebarCollapsedControl"] button {
+    color: #FFFFFF !important;
+    background-color: #18A999 !important;
+    border: 1px solid #55D6C2 !important;
+    border-radius: 8px !important;
+}
 
+/* Make the arrow icon visible */
+[data-testid="stSidebarCollapseButton"] button svg,
+[data-testid="stSidebarCollapsedControl"] button svg {
+    fill: #FFFFFF !important;
+    color: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
