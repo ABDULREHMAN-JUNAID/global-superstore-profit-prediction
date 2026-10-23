@@ -319,7 +319,27 @@ st.markdown("""
     stroke: #FFFFFF !important;
     opacity: 1 !important;
 }
+/* Fix sidebar branding text visibility */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] span,
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] {
+    color: #FFFFFF !important;
+    opacity: 1 !important;
+}
 
+/* Main sidebar title */
+[data-testid="stSidebar"] h2 {
+    color: #FFFFFF !important;
+    font-weight: 800 !important;
+}
+
+/* Sidebar description */
+[data-testid="stSidebar"] p {
+    color: #DCE7F3 !important;
+}
 </style>
 """, unsafe_allow_html=True)
 
