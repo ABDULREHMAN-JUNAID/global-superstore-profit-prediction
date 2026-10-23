@@ -264,7 +264,16 @@ st.markdown("""
         margin-bottom: 14px;
         border-color: rgba(255, 255, 255, 0.15);
     }
+    /* Fix text visibility when text is selected */
+::selection {
+    background-color: #b7d7ff !important;
+    color: #172033 !important;
+}
 
+::-moz-selection {
+    background-color: #b7d7ff !important;
+    color: #172033 !important;
+}
 
 </style>
 """, unsafe_allow_html=True)
