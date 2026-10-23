@@ -296,6 +296,30 @@ st.markdown("""
     color: #FFFFFF !important;
     stroke: #FFFFFF !important;
 }
+/* Make the reopen-sidebar arrow visible */
+[data-testid="stSidebarCollapsedControl"] {
+    background-color: #18A999 !important;
+    border: 1px solid #55D6C2 !important;
+    border-radius: 8px !important;
+    z-index: 999999 !important;
+}
+
+/* Style the reopen button */
+[data-testid="stSidebarCollapsedControl"] button {
+    background-color: #18A999 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    opacity: 1 !important;
+}
+
+/* Ensure the arrow icon is visible */
+[data-testid="stSidebarCollapsedControl"] svg {
+    color: #FFFFFF !important;
+    fill: #FFFFFF !important;
+    stroke: #FFFFFF !important;
+    opacity: 1 !important;
+}
+
 </style>
 """, unsafe_allow_html=True)
 
