@@ -18,6 +18,257 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 
 warnings.filterwarnings("ignore")
 st.set_page_config(page_title="Global Superstore Profit Prediction", page_icon="📊", layout="wide")
+
+# Professional dashboard theme
+st.markdown("""
+<style>
+    /* Main background and text */
+    .stApp {
+        background-color: #F4F7FB;
+        color: #172B4D;
+    }
+
+    /* Main page headings */
+    h1 {
+        color: #14243A !important;
+        font-weight: 800 !important;
+    }
+
+    h2, h3 {
+        color: #23415A !important;
+        font-weight: 700 !important;
+    }
+
+    /* Sidebar */
+    [data-testid="stSidebar"] {
+        background-color: #14243A;
+    }
+
+    [data-testid="stSidebar"] * {
+        color: #FFFFFF;
+    }
+
+    /* Metric cards */
+    [data-testid="stMetric"] {
+        background-color: #FFFFFF;
+        border: 1px solid #DFE7F1;
+        border-left: 5px solid #18A999;
+        padding: 18px;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(20, 36, 58, 0.06);
+    }
+
+    [data-testid="stMetricLabel"] {
+        color: #52657A;
+        font-weight: 600;
+    }
+
+    [data-testid="stMetricValue"] {
+        color: #14243A;
+        font-weight: 800;
+    }
+
+    /* Buttons */
+    .stButton > button,
+    .stDownloadButton > button {
+        background-color: #18A999;
+        color: #FFFFFF;
+        border: none;
+        border-radius: 8px;
+        padding: 9px 18px;
+        font-weight: 700;
+        transition: 0.2s ease;
+    }
+
+    .stButton > button:hover,
+    .stDownloadButton > button:hover {
+        background-color: #128577;
+        color: #FFFFFF;
+        border: none;
+    }
+
+    /* Input fields */
+    [data-testid="stSelectbox"],
+    [data-testid="stNumberInput"],
+    [data-testid="stMultiSelect"] {
+        border-radius: 8px;
+    }
+
+    /* Data tables */
+    [data-testid="stDataFrame"] {
+        border: 1px solid #DFE7F1;
+        border-radius: 10px;
+    }
+
+    /* Subtle horizontal separators */
+    hr {
+        border-color: #DCE5EF;
+    }
+    
+    /* Make warning messages readable */
+    [data-testid="stAlert"] {
+        color: #14243A !important;
+        background-color: #FFF4D6 !important;
+        border: 1px solid #E6B84C !important;
+        border-radius: 10px;
+    }
+
+    [data-testid="stAlert"] p,
+    [data-testid="stAlert"] div,
+    [data-testid="stAlert"] span {
+        color: #14243A !important;
+    }
+    
+    /* ===== PREMIUM SIDEBAR DESIGN ===== */
+
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #101D33 0%, #172E49 55%, #0E2438 100%);
+        border-right: 1px solid rgba(255, 255, 255, 0.10);
+    }
+
+    /* Sidebar spacing */
+    [data-testid="stSidebar"] > div:first-child {
+        padding-top: 1.5rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Sidebar text */
+    [data-testid="stSidebar"] * {
+        color: #F3F7FC;
+    }
+
+    /* Sidebar headings */
+    [data-testid="stSidebar"] h1,
+    [data-testid="stSidebar"] h2,
+    [data-testid="stSidebar"] h3 {
+        color: #FFFFFF !important;
+        font-weight: 800 !important;
+        letter-spacing: 0.3px;
+    }
+
+    /* Radio navigation options */
+    [data-testid="stSidebar"] [role="radiogroup"] {
+        gap: 8px;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        background: rgba(255, 255, 255, 0.045);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin-bottom: 5px;
+        transition: all 0.2s ease;
+    }
+
+    /* Hover effect */
+    [data-testid="stSidebar"] [role="radiogroup"] label:hover {
+        background: rgba(24, 169, 153, 0.18);
+        border-color: #18A999;
+        transform: translateX(3px);
+    }
+
+    /* Selected navigation option */
+    [data-testid="stSidebar"] [role="radiogroup"] label:has(input:checked) {
+        background: linear-gradient(90deg, #18A999, #138A91);
+        border: 1px solid #55D6C2;
+        box-shadow: 0 4px 12px rgba(24, 169, 153, 0.20);
+    }
+
+    /* Radio circles */
+    [data-testid="stSidebar"] [role="radio"] {
+        accent-color: #18A999;
+    }
+
+    /* Sidebar dividers */
+    [data-testid="stSidebar"] hr {
+        border-color: rgba(255, 255, 255, 0.16);
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Sidebar captions */
+    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+        color: #B8C9DC !important;
+        font-size: 0.82rem;
+    }
+
+    /* Sidebar buttons */
+    [data-testid="stSidebar"] .stButton > button {
+        background: rgba(24, 169, 153, 0.12);
+        border: 1px solid #18A999;
+        color: #FFFFFF !important;
+        border-radius: 9px;
+        font-weight: 700;
+    }
+
+    [data-testid="stSidebar"] .stButton > button:hover {
+        background: #18A999;
+        color: #FFFFFF !important;
+    }
+    
+    /* ===== SIDEBAR NAVIGATION POLISH ===== */
+
+    [data-testid="stSidebar"] [role="radiogroup"] {
+        gap: 8px;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin: 4px 0;
+        transition: background 0.2s ease, border-color 0.2s ease;
+    }
+
+    /* Hover effect */
+    [data-testid="stSidebar"] [role="radiogroup"] label:hover {
+        background: rgba(24, 169, 153, 0.18);
+        border-color: #36CFC0;
+    }
+
+    
+
+    /* Keep navigation text readable */
+    [data-testid="stSidebar"] [role="radiogroup"] label p {
+        color: #FFFFFF !important;
+        font-weight: 600;
+    }
+    
+    /* ===== SIDEBAR SPACING & TYPOGRAPHY ===== */
+
+    [data-testid="stSidebar"] [data-testid="stVerticalBlock"] {
+        gap: 0.7rem;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] {
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+
+    [data-testid="stSidebar"] [role="radiogroup"] label {
+        min-height: 42px;
+        display: flex;
+        align-items: center;
+    }
+
+    [data-testid="stSidebar"] [data-testid="stCaptionContainer"] {
+        color: #B8C9DC !important;
+        font-size: 0.78rem;
+        line-height: 1.6;
+    }
+
+    [data-testid="stSidebar"] hr {
+        margin-top: 14px;
+        margin-bottom: 14px;
+        border-color: rgba(255, 255, 255, 0.15);
+    }
+
+
+</style>
+""", unsafe_allow_html=True)
+
 sns.set_theme(style="whitegrid")
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "Global Superstore.csv")
@@ -113,12 +364,34 @@ def get_model_results(df):
             "RMSE": np.sqrt(mean_squared_error(y_test, pred)),
             "R²": r2_score(y_test, pred)
         })
+   
     metrics = pd.DataFrame(rows).sort_values("RMSE")
+
+    # Get feature importance from the trained Random Forest model
+    rf_pipeline = fitted["Random Forest"]
+    rf_model = rf_pipeline.named_steps["model"]
+    preprocessor = rf_pipeline.named_steps["preprocess"]
+
+    feature_names = preprocessor.get_feature_names_out()
+    importance_values = rf_model.feature_importances_
+
+    feature_importance = pd.DataFrame({
+        "Feature": feature_names,
+        "Importance": importance_values
+    }).sort_values("Importance", ascending=False)
+
     return {
-        "models": fitted, "predictions": predictions, "metrics": metrics,
-        "X_test": X_test, "y_test": y_test, "features": features,
-        "numeric": numeric, "categorical": categorical
+        "models": fitted,
+        "predictions": predictions,
+        "metrics": metrics,
+        "X_test": X_test,
+        "y_test": y_test,
+        "features": features,
+        "numeric": numeric,
+        "categorical": categorical,
+        "feature_importance": feature_importance
     }
+
 
 def money(value):
     return f"${value:,.2f}"
@@ -134,8 +407,31 @@ def show_missing_columns_note():
 
 raw_df = load_data()
 df = clean_data(raw_df)
-st.sidebar.title("📊 Project Navigation")
-st.sidebar.caption("Global Superstore • Profit prediction")
+
+
+
+st.sidebar.markdown("---")
+
+st.sidebar.markdown("# 📊")
+st.sidebar.markdown("## SUPERSTORE")
+st.sidebar.markdown("**PROFIT ANALYTICS**")
+
+st.sidebar.caption("Business Intelligence Dashboard")
+st.sidebar.markdown(
+    "Explore data. Discover insights. Predict profit."
+)
+
+
+
+st.sidebar.markdown("---")
+
+st.sidebar.markdown(
+    "<p style='color:#36CFC0; font-size:11px; "
+    "font-weight:800; letter-spacing:1.5px; "
+    "margin-bottom:8px;'>MAIN MENU</p>",
+    unsafe_allow_html=True
+)
+
 page = st.sidebar.radio(
     "Choose a section",
     [
@@ -146,10 +442,15 @@ page = st.sidebar.radio(
         "5. Customer & Delivery Analysis",
         "6. Model Evaluation",
         "7. Profit Prediction"
-    ]
+    ],
+    label_visibility="collapsed"
 )
-st.sidebar.divider()
-st.sidebar.caption("Built with Python, Pandas, Seaborn, scikit-learn and Streamlit.")
+
+st.sidebar.markdown("---")
+
+
+
+
 
 if page == "1. Home":
     st.title("Global Superstore Sales Analytics & Profit Prediction")
@@ -181,9 +482,7 @@ if page == "1. Home":
         "The file contains 51,290 rows and 27 columns, including Sales, Profit, Quantity, Discount, "
         "Category, Sub-Category, Region, Market, Segment and shipping information."
     )
-    st.markdown("### Student details")
-    st.write("Student name: **Add your name here**")
-    st.write("Course name: **Data Science and Machine Learning**")
+    
     show_missing_columns_note()
     st.info(
         "Data-quality limitation: Order Date and Ship Date in this file contain '00:00.0' rather than "
@@ -241,11 +540,56 @@ elif page == "2. Dataset Explorer":
 
 elif page == "3. Sales Dashboard":
     st.title("Sales Dashboard")
-    total_sales = df["Sales"].sum()
-    total_profit = df["Profit"].sum()
-    orders = df["Order ID"].nunique()
-    avg_order_value = df.groupby("Order ID")["Sales"].sum().mean()
-    avg_profit = df.groupby("Order ID")["Profit"].sum().mean()
+    
+    # Interactive dashboard filters
+    st.markdown("### Filter your analysis")
+
+    f1, f2, f3 = st.columns(3)
+
+    years = sorted(df["Year"].dropna().unique().tolist())
+    regions = sorted(df["Region"].dropna().unique().tolist())
+    categories = sorted(df["Category"].dropna().unique().tolist())
+
+    selected_years = f1.multiselect(
+        "Select year",
+        years,
+        default=years
+    )
+
+    selected_regions = f2.multiselect(
+        "Select region",
+        regions,
+        default=regions
+    )
+
+    selected_categories = f3.multiselect(
+        "Select category",
+        categories,
+        default=categories
+    )
+
+    # Apply the selected filters
+    dashboard_df = df[
+        df["Year"].isin(selected_years)
+        & df["Region"].isin(selected_regions)
+        & df["Category"].isin(selected_categories)
+    ].copy()
+
+    if dashboard_df.empty:
+        st.warning("No data matches these filters. Please select at least one option in each filter.")
+        st.stop()
+
+    
+    total_sales = dashboard_df["Sales"].sum()
+    total_profit = dashboard_df["Profit"].sum()
+    orders = dashboard_df["Order ID"].nunique()
+    avg_order_value = dashboard_df.groupby("Order ID")["Sales"].sum().mean()
+    avg_profit = dashboard_df.groupby("Order ID")["Profit"].sum().mean()
+    profit_margin = (
+        total_profit / total_sales * 100
+        if total_sales != 0 else 0
+    )
+
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Total Sales", money(total_sales))
     c2.metric("Total Profit", money(total_profit))
@@ -258,19 +602,19 @@ elif page == "3. Sales Dashboard":
     c8.metric("Customers", f"{df['Customer ID'].nunique():,}")
     left, right = st.columns(2)
     with left:
-        cat_sales = df.groupby("Category")["Sales"].sum().sort_values()
+        cat_sales = dashboard_df.groupby("Category")["Sales"].sum().sort_values()
         fig, ax = plt.subplots(figsize=(7, 4))
         cat_sales.plot(kind="barh", ax=ax)
         ax.set_title("Sales by Category"); ax.set_xlabel("Sales"); ax.set_ylabel("Category")
         st.pyplot(fig); plt.close(fig)
     with right:
-        cat_profit = df.groupby("Category")["Profit"].sum().sort_values()
+        cat_profit = dashboard_df.groupby("Category")["Profit"].sum().sort_values()
         fig, ax = plt.subplots(figsize=(7, 4))
         cat_profit.plot(kind="barh", ax=ax)
         ax.set_title("Profit by Category"); ax.set_xlabel("Profit"); ax.set_ylabel("Category")
         st.pyplot(fig); plt.close(fig)
     st.markdown("### Sales and profit by region")
-    region_stats = df.groupby("Region")[["Sales", "Profit"]].sum().sort_values("Sales", ascending=False)
+    region_stats = dashboard_df.groupby("Region")[["Sales", "Profit"]].sum().sort_values("Sales", ascending=False)
     st.dataframe(region_stats.style.format({"Sales": "${:,.2f}", "Profit": "${:,.2f}"}), use_container_width=True)
     st.bar_chart(region_stats[["Sales", "Profit"]])
 
@@ -364,6 +708,22 @@ elif page == "6. Model Evaluation":
     st.write("Models predict Profit using order characteristics available in this dataset.")
     with st.spinner("Training three regression models. The first run may take a little time..."):
         results = get_model_results(df)
+        
+        st.markdown("### Random Forest: Top 10 Important Features")
+
+        importance = results["feature_importance"].head(10).copy()
+        importance = importance.sort_values("Importance", ascending=True)
+
+        fig, ax = plt.subplots(figsize=(9, 5))
+        ax.barh(importance["Feature"], importance["Importance"])
+        ax.set_title("Top 10 Features for Profit Prediction")
+        ax.set_xlabel("Importance Score")
+        ax.set_ylabel("Feature")
+        plt.tight_layout()
+
+        st.pyplot(fig)
+        plt.close(fig)
+
     st.markdown("### Model comparison")
     st.dataframe(results["metrics"].style.format({
         "MAE": "${:,.2f}", "MSE": "{:,.2f}", "RMSE": "${:,.2f}", "R²": "{:.4f}"
@@ -443,7 +803,12 @@ elif page == "7. Profit Prediction":
         }])
         model = results["models"][model_name]
         prediction = float(model.predict(new_order[results["features"]])[0])
+        
         st.metric("Predicted Profit", money(prediction))
+
+        profit_margin = (prediction / sales * 100) if sales > 0 else 0
+        st.metric("Predicted Profit Margin", f"{profit_margin:.2f}%")
+
         if prediction < 0:
             st.error("Loss warning: this order is predicted to make a loss. Review discount, cost, and product mix.")
             profit_category = "Loss"
