@@ -27,7 +27,13 @@ st.markdown("""
         background-color: #F4F7FB;
         color: #172B4D;
     }
-
+    /* Fix main page text visibility */
+.stApp p,
+.stApp label,
+.stApp span,
+.stApp [data-testid="stMarkdownContainer"] {
+    color: #172B4D;
+}
     /* Main page headings */
     h1 {
         color: #14243A !important;
